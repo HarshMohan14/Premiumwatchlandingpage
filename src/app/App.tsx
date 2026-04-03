@@ -366,7 +366,7 @@ export default function App() {
               </motion.div>
             ))}
           </motion.div>
-        </div>
+        </motion.div>
 
         {/* Scroll Indicator */}
         <motion.div
