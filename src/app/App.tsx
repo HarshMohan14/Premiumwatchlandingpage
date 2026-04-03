@@ -1,13 +1,17 @@
 import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
 import { ImageWithFallback } from "./components/figma/ImageWithFallback";
-import { ChevronRight, Clock, Shield, Truck, Mail, Phone, MapPin, Instagram, Facebook, Twitter } from "lucide-react";
+import { ChevronRight, Clock, Shield, Truck, Mail, Phone, MapPin, Instagram, Facebook, Twitter, Menu } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import LoadingScreen from "./components/LoadingScreen";
+import MobileMenu from "./components/MobileMenu";
+import Gallery from "./components/Gallery";
+import ScrollProgress from "./components/ScrollProgress";
 
 export default function App() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [scrolled, setScrolled] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -128,6 +132,8 @@ export default function App() {
         )}
       </AnimatePresence>
 
+      <ScrollProgress />
+
       <div className="min-h-screen bg-[#0a0a0a] text-white overflow-x-hidden relative">
         {/* Fixed Continuous Background */}
         <div className="fixed inset-0 z-0 pointer-events-none">
@@ -156,12 +162,13 @@ export default function App() {
             : 'bg-transparent backdrop-blur-sm border-b border-white/10'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-5 flex items-center justify-between">
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="text-xl tracking-wider relative group cursor-pointer"
+            className="text-sm sm:text-base md:text-xl tracking-wider relative group cursor-pointer"
           >
-            <span className="relative z-10">HOMAGE WATCH INDIA</span>
+            <span className="relative z-10">HOMAGE WATCH</span>
+            <span className="relative z-10 hidden sm:inline"> INDIA</span>
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/0 via-[#d4af37]/10 to-[#d4af37]/0 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               initial={{ x: '-100%' }}
@@ -170,11 +177,11 @@ export default function App() {
             />
           </motion.div>
 
-          <div className="hidden md:flex gap-8 items-center">
-            {["Collections", "New Arrivals", "About", "Contact"].map((item, i) => (
+          <div className="hidden lg:flex gap-8 items-center">
+            {["Collections", "New Arrivals", "Gallery", "About", "Contact"].map((item, i) => (
               <motion.a
                 key={item}
-                href="#"
+                href={`#${item.toLowerCase().replace(' ', '-')}`}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * i, duration: 0.5 }}
@@ -193,24 +200,37 @@ export default function App() {
             ))}
           </div>
 
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="relative px-6 py-2.5 text-sm tracking-wide overflow-hidden group"
-          >
-            <span className="relative z-10 text-black font-medium">Shop Now</span>
-            <motion.div
-              className="absolute inset-0 bg-[#d4af37]"
-              initial={{ scale: 1 }}
+          <div className="flex items-center gap-3">
+            <motion.button
               whileHover={{ scale: 1.05 }}
-            />
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-[#f0c74a] to-[#d4af37] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            />
-            <div className="absolute inset-0 bg-[#d4af37]/50 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          </motion.button>
+              whileTap={{ scale: 0.95 }}
+              className="hidden sm:block relative px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm tracking-wide overflow-hidden group"
+            >
+              <span className="relative z-10 text-black font-medium">Shop Now</span>
+              <motion.div
+                className="absolute inset-0 bg-[#d4af37]"
+                initial={{ scale: 1 }}
+                whileHover={{ scale: 1.05 }}
+              />
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-[#f0c74a] to-[#d4af37] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              />
+              <div className="absolute inset-0 bg-[#d4af37]/50 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </motion.button>
+
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="lg:hidden w-10 h-10 flex items-center justify-center border border-white/20 rounded hover:border-[#d4af37] hover:bg-[#d4af37]/10 transition-all"
+            >
+              <Menu className="w-5 h-5" />
+            </motion.button>
+          </div>
         </div>
       </motion.nav>
+
+      <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
 
       {/* Hero Section with Slider and Parallax */}
       <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -245,7 +265,7 @@ export default function App() {
         {/* Hero Content with Parallax Fade */}
         <motion.div
           style={{ opacity: heroOpacity }}
-          className="relative z-30 max-w-7xl mx-auto px-6 w-full"
+          className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 w-full"
         >
           <div className="max-w-3xl">
             <AnimatePresence mode="wait">
@@ -255,10 +275,10 @@ export default function App() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -30 }}
                 transition={{ duration: 0.8 }}
-                className="mb-6"
+                className="mb-4 sm:mb-6"
               >
-                <div className="inline-block px-4 py-2 bg-[#d4af37]/20 border border-[#d4af37]/30 backdrop-blur-sm mb-6">
-                  <span className="text-[#d4af37] text-sm tracking-widest">
+                <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-[#d4af37]/20 border border-[#d4af37]/30 backdrop-blur-sm mb-4 sm:mb-6">
+                  <span className="text-[#d4af37] text-xs sm:text-sm tracking-widest">
                     {heroSlides[currentSlide].subtitle}
                   </span>
                 </div>
@@ -272,7 +292,7 @@ export default function App() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 50 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-6xl md:text-8xl mb-6 leading-tight"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-4 sm:mb-6 leading-tight"
               >
                 {heroSlides[currentSlide].title.split(' ').map((word, i) => (
                   <span key={i}>
@@ -290,7 +310,7 @@ export default function App() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-xl text-gray-300 mb-10 leading-relaxed max-w-2xl"
+              className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-10 leading-relaxed max-w-2xl"
             >
               Discover India's finest collection of luxury timepieces.
               Handcrafted precision meets contemporary design.
@@ -300,27 +320,27 @@ export default function App() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="flex flex-wrap gap-4 mb-16"
+              className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-12 sm:mb-16"
             >
               <motion.button
                 whileHover={{ scale: 1.05, backgroundColor: "#f0c74a" }}
                 whileTap={{ scale: 0.95 }}
-                className="px-10 py-5 bg-[#d4af37] text-black tracking-wide flex items-center gap-2 group text-lg"
+                className="px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 bg-[#d4af37] text-black tracking-wide flex items-center justify-center gap-2 group text-sm sm:text-base md:text-lg"
               >
                 Explore Collection
-                <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-10 py-5 border-2 border-white/30 backdrop-blur-sm tracking-wide hover:bg-white/10 transition-colors text-lg"
+                className="px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 border-2 border-white/30 backdrop-blur-sm tracking-wide hover:bg-white/10 transition-colors text-sm sm:text-base md:text-lg"
               >
                 Learn More
               </motion.button>
             </motion.div>
 
             {/* Slider Indicators */}
-            <div className="flex gap-3">
+            <div className="flex gap-2 sm:gap-3 mb-8 sm:mb-0">
               {heroSlides.map((_, index) => (
                 <button
                   key={index}
@@ -329,8 +349,8 @@ export default function App() {
                 >
                   <div className={`h-1 transition-all duration-500 ${
                     index === currentSlide
-                      ? 'w-16 bg-[#d4af37]'
-                      : 'w-8 bg-white/30 hover:bg-white/50'
+                      ? 'w-12 sm:w-16 bg-[#d4af37]'
+                      : 'w-6 sm:w-8 bg-white/30 hover:bg-white/50'
                   }`} />
                   {index === currentSlide && (
                     <motion.div
@@ -348,7 +368,7 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1 }}
-            className="grid grid-cols-3 gap-8 mt-20 pt-12 border-t border-white/20 max-w-3xl"
+            className="grid grid-cols-3 gap-4 sm:gap-6 md:gap-8 mt-12 sm:mt-16 md:mt-20 pt-8 sm:pt-12 border-t border-white/20 max-w-3xl"
           >
             {[
               { num: "10K+", label: "Happy Customers" },
@@ -361,8 +381,8 @@ export default function App() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.2 + i * 0.1 }}
               >
-                <div className="text-4xl md:text-5xl text-[#d4af37] mb-2">{stat.num}</div>
-                <div className="text-sm text-gray-400">{stat.label}</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#d4af37] mb-1 sm:mb-2">{stat.num}</div>
+                <div className="text-xs sm:text-sm text-gray-400">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -386,21 +406,21 @@ export default function App() {
       </section>
 
       {/* Featured Collection with Glassmorphism */}
-      <section className="py-24 px-6 relative z-10">
+      <section id="collections" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16"
           >
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-4xl md:text-5xl mb-4"
+              className="text-3xl sm:text-4xl md:text-5xl mb-4"
             >
               Featured Collection
             </motion.h2>
@@ -409,13 +429,13 @@ export default function App() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-gray-400"
+              className="text-gray-400 text-sm sm:text-base"
             >
               Curated selection of our most exquisite timepieces
             </motion.p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {featuredWatches.map((watch, i) => (
               <motion.div
                 key={watch.id}
@@ -449,15 +469,15 @@ export default function App() {
                   </motion.div>
                 </div>
 
-                <h3 className="text-2xl mb-2 relative z-10">{watch.name}</h3>
-                <p className="text-[#d4af37] text-xl mb-4 relative z-10">{watch.price}</p>
+                <h3 className="text-xl sm:text-2xl mb-2 relative z-10">{watch.name}</h3>
+                <p className="text-[#d4af37] text-lg sm:text-xl mb-4 relative z-10">{watch.price}</p>
 
                 <motion.button
                   whileHover={{ x: 5 }}
-                  className="flex items-center gap-2 text-sm tracking-wide text-gray-400 group-hover:text-[#d4af37] transition-colors relative z-10"
+                  className="flex items-center gap-2 text-xs sm:text-sm tracking-wide text-gray-400 group-hover:text-[#d4af37] transition-colors relative z-10"
                 >
                   View Details
-                  <ChevronRight className="w-4 h-4" />
+                  <ChevronRight className="w-3 sm:w-4 h-3 sm:h-4" />
                 </motion.button>
               </motion.div>
             ))}
@@ -465,8 +485,11 @@ export default function App() {
         </div>
       </section>
 
+      {/* Gallery Section */}
+      <Gallery />
+
       {/* Upcoming Collection with Glassmorphism */}
-      <section className="py-24 px-6 relative overflow-hidden z-10">
+      <section id="new-arrivals" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 relative overflow-hidden z-10">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -481,16 +504,16 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16"
           >
-            <span className="text-[#d4af37] text-sm tracking-widest uppercase mb-4 block">Coming Soon</span>
-            <h2 className="text-4xl md:text-5xl mb-4">Upcoming Collection</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
+            <span className="text-[#d4af37] text-xs sm:text-sm tracking-widest uppercase mb-4 block">Coming Soon</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl mb-4">Upcoming Collection</h2>
+            <p className="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base px-4">
               Be the first to discover our latest luxury timepieces launching this season
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -506,10 +529,10 @@ export default function App() {
                     loading="lazy"
                   />
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-lg flex items-end p-8">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-lg flex items-end p-4 sm:p-6 md:p-8">
                   <div>
-                    <h3 className="text-3xl mb-2">Royal Heritage Series</h3>
-                    <p className="text-[#d4af37]">Launching May 2026</p>
+                    <h3 className="text-xl sm:text-2xl md:text-3xl mb-2">Royal Heritage Series</h3>
+                    <p className="text-[#d4af37] text-sm sm:text-base">Launching May 2026</p>
                   </div>
                 </div>
               </div>
@@ -523,13 +546,13 @@ export default function App() {
               className="space-y-6"
             >
               <div>
-                <h3 className="text-2xl mb-4">Exclusive Pre-Launch Access</h3>
-                <p className="text-gray-400 leading-relaxed mb-6">
+                <h3 className="text-xl sm:text-2xl mb-4">Exclusive Pre-Launch Access</h3>
+                <p className="text-gray-400 leading-relaxed mb-6 text-sm sm:text-base">
                   Sign up now to get early access to our upcoming collection. Limited pieces available for pre-order.
                 </p>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {[
                   "Exclusive 20% pre-order discount",
                   "Priority delivery before public launch",
@@ -544,8 +567,8 @@ export default function App() {
                     transition={{ delay: i * 0.1, duration: 0.5 }}
                     className="flex items-start gap-3"
                   >
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#d4af37] mt-2" />
-                    <span className="text-gray-300">{benefit}</span>
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#d4af37] mt-2 flex-shrink-0" />
+                    <span className="text-gray-300 text-sm sm:text-base">{benefit}</span>
                   </motion.div>
                 ))}
               </div>
@@ -553,7 +576,7 @@ export default function App() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="mt-8 px-8 py-4 bg-[#d4af37] text-black tracking-wide hover:bg-[#f0c74a] transition-colors"
+                className="mt-6 sm:mt-8 px-6 sm:px-8 py-3 sm:py-4 bg-[#d4af37] text-black tracking-wide hover:bg-[#f0c74a] transition-colors w-full sm:w-auto text-sm sm:text-base"
               >
                 Notify Me
               </motion.button>
@@ -563,7 +586,7 @@ export default function App() {
       </section>
 
       {/* Features with Glassmorphism */}
-      <section className="py-24 px-6 relative z-10">
+      <section id="about" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 0.5 }}
@@ -572,7 +595,7 @@ export default function App() {
         />
 
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12">
             {[
               {
                 icon: Truck,
@@ -600,17 +623,17 @@ export default function App() {
               >
                 <motion.div
                   whileHover={{ scale: 1.15, rotate: 5 }}
-                  className="w-20 h-20 mx-auto mb-6 bg-[#d4af37]/10 backdrop-blur-sm border border-[#d4af37]/30 flex items-center justify-center relative overflow-hidden group-hover:border-[#d4af37]/60 transition-all duration-300 rounded-lg"
+                  className="w-16 sm:w-20 h-16 sm:h-20 mx-auto mb-4 sm:mb-6 bg-[#d4af37]/10 backdrop-blur-sm border border-[#d4af37]/30 flex items-center justify-center relative overflow-hidden group-hover:border-[#d4af37]/60 transition-all duration-300 rounded-lg"
                 >
-                  <feature.icon className="w-10 h-10 text-[#d4af37] relative z-10" />
+                  <feature.icon className="w-8 sm:w-10 h-8 sm:h-10 text-[#d4af37] relative z-10" />
                   <motion.div
                     className="absolute inset-0 bg-[#d4af37]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     initial={{ scale: 0 }}
                     whileHover={{ scale: 1 }}
                   />
                 </motion.div>
-                <h3 className="text-xl mb-3">{feature.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{feature.desc}</p>
+                <h3 className="text-lg sm:text-xl mb-2 sm:mb-3">{feature.title}</h3>
+                <p className="text-gray-400 text-xs sm:text-sm leading-relaxed px-2">{feature.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -618,7 +641,7 @@ export default function App() {
       </section>
 
       {/* Contact Us Section with Glassmorphism */}
-      <section className="py-24 px-6 relative z-10">
+      <section id="contact" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 0.3 }}
@@ -632,13 +655,13 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-4xl md:text-5xl mb-4">Get In Touch</h2>
-            <p className="text-gray-400">We're here to help you find your perfect timepiece</p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl mb-4">Get In Touch</h2>
+            <p className="text-gray-400 text-sm sm:text-base">We're here to help you find your perfect timepiece</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
             {[
               {
                 icon: Phone,
@@ -666,19 +689,19 @@ export default function App() {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.8, delay: i * 0.15 }}
                 whileHover={{ y: -8, scale: 1.02 }}
-                className="relative bg-white/5 backdrop-blur-md border border-white/10 p-8 text-center hover:border-[#d4af37]/50 transition-all duration-300 group rounded-lg overflow-hidden"
+                className="relative bg-white/5 backdrop-blur-md border border-white/10 p-6 sm:p-8 text-center hover:border-[#d4af37]/50 transition-all duration-300 group rounded-lg overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/10 group-hover:to-[#d4af37]/5 transition-all duration-500" />
 
                 <motion.div
                   whileHover={{ scale: 1.15, rotate: 5 }}
-                  className="w-16 h-16 mx-auto mb-6 bg-[#d4af37]/20 backdrop-blur-sm border border-[#d4af37]/30 flex items-center justify-center relative z-10 rounded-lg"
+                  className="w-14 sm:w-16 h-14 sm:h-16 mx-auto mb-4 sm:mb-6 bg-[#d4af37]/20 backdrop-blur-sm border border-[#d4af37]/30 flex items-center justify-center relative z-10 rounded-lg"
                 >
-                  <contact.icon className="w-8 h-8 text-[#d4af37]" />
+                  <contact.icon className="w-7 sm:w-8 h-7 sm:h-8 text-[#d4af37]" />
                 </motion.div>
-                <h3 className="text-xl mb-3 relative z-10">{contact.title}</h3>
-                <p className="text-[#d4af37] mb-2 relative z-10">{contact.detail}</p>
-                <p className="text-sm text-gray-500 relative z-10">{contact.subdetail}</p>
+                <h3 className="text-lg sm:text-xl mb-2 sm:mb-3 relative z-10">{contact.title}</h3>
+                <p className="text-[#d4af37] mb-2 relative z-10 text-sm sm:text-base break-words">{contact.detail}</p>
+                <p className="text-xs sm:text-sm text-gray-500 relative z-10">{contact.subdetail}</p>
               </motion.div>
             ))}
           </div>
@@ -688,11 +711,11 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="max-w-2xl mx-auto bg-white/5 backdrop-blur-xl border border-white/20 p-8 md:p-12 rounded-lg shadow-2xl shadow-black/50"
+            className="max-w-2xl mx-auto bg-white/5 backdrop-blur-xl border border-white/20 p-6 sm:p-8 md:p-12 rounded-lg shadow-2xl shadow-black/50"
           >
-            <h3 className="text-2xl mb-6 text-center">Send Us a Message</h3>
-            <form className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
+            <h3 className="text-xl sm:text-2xl mb-6 text-center">Send Us a Message</h3>
+            <form className="space-y-4 sm:space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <input
                   type="text"
                   placeholder="Your Name"
@@ -712,13 +735,13 @@ export default function App() {
               <textarea
                 rows={5}
                 placeholder="Your Message"
-                className="w-full px-4 py-3 bg-black/30 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-gray-500 focus:border-[#d4af37]/50 focus:bg-black/40 focus:outline-none transition-all resize-none"
+                className="w-full px-4 py-3 bg-black/30 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-gray-500 focus:border-[#d4af37]/50 focus:bg-black/40 focus:outline-none transition-all resize-none text-sm sm:text-base"
               />
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                className="w-full px-8 py-4 bg-[#d4af37] text-black tracking-wide hover:bg-[#f0c74a] transition-colors rounded-lg shadow-lg shadow-[#d4af37]/30 hover:shadow-[#d4af37]/50"
+                className="w-full px-6 sm:px-8 py-3 sm:py-4 bg-[#d4af37] text-black tracking-wide hover:bg-[#f0c74a] transition-colors rounded-lg shadow-lg shadow-[#d4af37]/30 hover:shadow-[#d4af37]/50 text-sm sm:text-base"
               >
                 Send Message
               </motion.button>
@@ -729,20 +752,20 @@ export default function App() {
 
       {/* Footer with Glassmorphism */}
       <footer className="relative z-10 border-t border-white/20 bg-black/30 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-6 py-16">
-          <div className="grid md:grid-cols-4 gap-12 mb-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 md:gap-12 mb-8 sm:mb-12">
             {/* Brand Column */}
-            <div className="md:col-span-1">
+            <div className="lg:col-span-1">
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="text-xl tracking-wider mb-4"
+                className="text-base sm:text-lg md:text-xl tracking-wider mb-4"
               >
                 HOMAGE WATCH INDIA
               </motion.div>
-              <p className="text-gray-400 text-sm leading-relaxed mb-6">
+              <p className="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
                 India's premier destination for luxury timepieces. Crafting moments that last forever.
               </p>
-              <div className="flex gap-4">
+              <div className="flex gap-3 sm:gap-4">
                 {[
                   { icon: Instagram, href: "#" },
                   { icon: Facebook, href: "#" },
@@ -764,14 +787,14 @@ export default function App() {
 
             {/* Quick Links */}
             <div>
-              <h3 className="text-lg mb-4 text-[#d4af37]">Quick Links</h3>
-              <ul className="space-y-3">
+              <h3 className="text-base sm:text-lg mb-3 sm:mb-4 text-[#d4af37]">Quick Links</h3>
+              <ul className="space-y-2 sm:space-y-3">
                 {["About Us", "Our Collections", "New Arrivals", "Best Sellers", "Gift Cards"].map(link => (
                   <li key={link}>
                     <motion.a
                       href="#"
                       whileHover={{ x: 5 }}
-                      className="text-gray-400 text-sm hover:text-[#d4af37] transition-colors inline-block"
+                      className="text-gray-400 text-xs sm:text-sm hover:text-[#d4af37] transition-colors inline-block"
                     >
                       {link}
                     </motion.a>
@@ -782,14 +805,14 @@ export default function App() {
 
             {/* Customer Service */}
             <div>
-              <h3 className="text-lg mb-4 text-[#d4af37]">Customer Service</h3>
-              <ul className="space-y-3">
+              <h3 className="text-base sm:text-lg mb-3 sm:mb-4 text-[#d4af37]">Customer Service</h3>
+              <ul className="space-y-2 sm:space-y-3">
                 {["Contact Us", "Shipping & Delivery", "Returns & Exchanges", "Warranty Info", "Size Guide", "FAQ"].map(link => (
                   <li key={link}>
                     <motion.a
                       href="#"
                       whileHover={{ x: 5 }}
-                      className="text-gray-400 text-sm hover:text-[#d4af37] transition-colors inline-block"
+                      className="text-gray-400 text-xs sm:text-sm hover:text-[#d4af37] transition-colors inline-block"
                     >
                       {link}
                     </motion.a>
@@ -800,20 +823,20 @@ export default function App() {
 
             {/* Newsletter */}
             <div>
-              <h3 className="text-lg mb-4 text-[#d4af37]">Newsletter</h3>
-              <p className="text-gray-400 text-sm mb-4 leading-relaxed">
+              <h3 className="text-base sm:text-lg mb-3 sm:mb-4 text-[#d4af37]">Newsletter</h3>
+              <p className="text-gray-400 text-xs sm:text-sm mb-4 leading-relaxed">
                 Subscribe to get exclusive offers and updates on new arrivals.
               </p>
-              <div className="space-y-3">
+              <div className="space-y-2 sm:space-y-3">
                 <input
                   type="email"
                   placeholder="Your email"
-                  className="w-full px-4 py-2 bg-black/50 border border-white/10 text-white text-sm placeholder-gray-500 focus:border-[#d4af37]/50 focus:outline-none transition-colors"
+                  className="w-full px-3 sm:px-4 py-2 bg-black/50 border border-white/10 text-white text-xs sm:text-sm placeholder-gray-500 focus:border-[#d4af37]/50 focus:outline-none transition-colors"
                 />
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full px-4 py-2 bg-[#d4af37] text-black text-sm tracking-wide hover:bg-[#f0c74a] transition-colors"
+                  className="w-full px-3 sm:px-4 py-2 bg-[#d4af37] text-black text-xs sm:text-sm tracking-wide hover:bg-[#f0c74a] transition-colors"
                 >
                   Subscribe
                 </motion.button>
@@ -822,11 +845,11 @@ export default function App() {
           </div>
 
           {/* Bottom Bar */}
-          <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-500 text-sm">
+          <div className="pt-6 sm:pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-gray-500 text-xs sm:text-sm text-center md:text-left">
               © 2026 Homage Watch India. All rights reserved.
             </p>
-            <div className="flex gap-6 text-sm">
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm">
               {["Privacy Policy", "Terms of Service", "Cookies"].map(link => (
                 <motion.a
                   key={link}
