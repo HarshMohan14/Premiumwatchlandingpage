@@ -6,12 +6,17 @@ import LoadingScreen from "./components/LoadingScreen";
 import MobileMenu from "./components/MobileMenu";
 import Gallery from "./components/Gallery";
 import ScrollProgress from "./components/ScrollProgress";
+import ThemeToggle from "./components/ThemeToggle";
+import CustomerReviews from "./components/CustomerReviews";
+import BrandShowcase from "./components/BrandShowcase";
+import ImageWithLoader from "./components/ImageWithLoader";
 
 export default function App() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [scrolled, setScrolled] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -29,6 +34,14 @@ export default function App() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDarkMode]);
 
   // Preload images and handle loading state
   useEffect(() => {
@@ -134,19 +147,19 @@ export default function App() {
 
       <ScrollProgress />
 
-      <div className="min-h-screen bg-[#0a0a0a] text-white overflow-x-hidden relative">
+      <div className="min-h-screen bg-[#0a0a0a] dark:bg-[#0a0a0a] bg-gray-50 text-gray-900 dark:text-white overflow-x-hidden relative transition-colors duration-500">
         {/* Fixed Continuous Background */}
         <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(212,175,55,0.15),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(212,175,55,0.1),transparent_50%)]" />
-        <div className="absolute inset-0 opacity-30">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(212,175,55,0.15),transparent_50%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(212,175,55,0.15),transparent_50%)] bg-[radial-gradient(ellipse_at_top,rgba(212,175,55,0.08),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(212,175,55,0.1),transparent_50%)] dark:bg-[radial-gradient(ellipse_at_bottom,rgba(212,175,55,0.1),transparent_50%)] bg-[radial-gradient(ellipse_at_bottom,rgba(212,175,55,0.05),transparent_50%)]" />
+        <div className="absolute inset-0 opacity-30 dark:opacity-30 opacity-20">
           <div className="absolute top-20 left-10 w-72 h-72 bg-[#d4af37]/10 rounded-full blur-3xl" />
           <div className="absolute top-1/3 right-20 w-96 h-96 bg-[#d4af37]/5 rounded-full blur-3xl" />
           <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-[#d4af37]/8 rounded-full blur-3xl" />
         </div>
         {/* Subtle grid pattern */}
-        <div className="absolute inset-0 opacity-[0.02]" style={{
-          backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+        <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.02] opacity-[0.04]" style={{
+          backgroundImage: 'linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)',
           backgroundSize: '100px 100px'
         }} />
       </div>
@@ -158,8 +171,8 @@ export default function App() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-black/40 backdrop-blur-xl border-b border-white/20 shadow-lg shadow-black/50'
-            : 'bg-transparent backdrop-blur-sm border-b border-white/10'
+            ? 'bg-white/80 dark:bg-black/40 backdrop-blur-xl border-b border-gray-200 dark:border-white/20 shadow-lg'
+            : 'bg-transparent backdrop-blur-sm border-b border-gray-200/50 dark:border-white/10'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-5 flex items-center justify-between">
@@ -201,6 +214,8 @@ export default function App() {
           </div>
 
           <div className="flex items-center gap-3">
+            <ThemeToggle isDark={isDarkMode} onToggle={() => setIsDarkMode(!isDarkMode)} />
+
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -222,7 +237,7 @@ export default function App() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsMobileMenuOpen(true)}
-              className="lg:hidden w-10 h-10 flex items-center justify-center border border-white/20 rounded hover:border-[#d4af37] hover:bg-[#d4af37]/10 transition-all"
+              className="lg:hidden w-10 h-10 flex items-center justify-center border border-gray-300 dark:border-white/20 rounded hover:border-[#d4af37] hover:bg-[#d4af37]/10 transition-all"
             >
               <Menu className="w-5 h-5" />
             </motion.button>
@@ -488,6 +503,12 @@ export default function App() {
       {/* Gallery Section */}
       <Gallery />
 
+      {/* Brand Showcase Section */}
+      <BrandShowcase />
+
+      {/* Customer Reviews Section */}
+      <CustomerReviews />
+
       {/* Upcoming Collection with Glassmorphism */}
       <section id="new-arrivals" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 relative overflow-hidden z-10">
         <motion.div
@@ -751,7 +772,7 @@ export default function App() {
       </section>
 
       {/* Footer with Glassmorphism */}
-      <footer className="relative z-10 border-t border-white/20 bg-black/30 backdrop-blur-xl">
+      <footer className="relative z-10 border-t border-gray-200 dark:border-white/20 bg-white/50 dark:bg-black/30 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 md:gap-12 mb-8 sm:mb-12">
             {/* Brand Column */}
