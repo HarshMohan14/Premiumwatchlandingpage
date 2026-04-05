@@ -1,0 +1,52 @@
+:root {
+  --bg-main-light: #F9F7F2;
+  --bg-main-dark: #121212;
+
+  --text-primary-light: #3B4C69;
+  --text-primary-dark: #F5F5F5;
+
+  --text-secondary-light: #6F4E37;
+  --text-secondary-dark: #A0A0A0;
+
+  --accent-primary-light: #007BFF;
+  --accent-primary-dark: #E0BFB8;
+
+  --accent-secondary-light: #008080;
+  --accent-secondary-dark: #EEDBB0;
+
+  --button-text-light: #FFFFFF;
+  --button-text-dark: #F5F5F5;
+
+  --hover-cta-light: #004225;
+  --hover-cta-dark: #EEDBB0;
+
+  --hover-link-light: #000000;
+  --hover-link-dark: #FFFFFF;
+
+  --border-light: #6F4E37;
+  --border-dark: #A0A0A0;
+}
+
+.dark {
+  --bg-main: var(--bg-main-dark);
+  --text-primary: var(--text-primary-dark);
+  --text-secondary: var(--text-secondary-dark);
+  --accent-primary: var(--accent-primary-dark);
+  --accent-secondary: var(--accent-secondary-dark);
+  --button-text: var(--button-text-dark);
+  --hover-cta: var(--hover-cta-dark);
+  --hover-link: var(--hover-link-dark);
+  --border-color: var(--border-dark);
+}
+
+:root:not(.dark) {
+  --bg-main: var(--bg-main-light);
+  --text-primary: var(--text-primary-light);
+  --text-secondary: var(--text-secondary-light);
+  --accent-primary: var(--accent-primary-light);
+  --accent-secondary: var(--accent-secondary-light);
+  --button-text: var(--button-text-light);
+  --hover-cta: var(--hover-cta-light);
+  --hover-link: var(--hover-link-dark);
+  --border-color: var(--border-light);
+}

@@ -55,12 +55,12 @@ export default function BrandShowcase() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-[#d4af37] text-xs sm:text-sm tracking-widest uppercase mb-4 block"
+            className="text-[#007BFF] dark:text-[#E0BFB8] text-xs sm:text-sm tracking-widest uppercase mb-4 block"
           >
             Authorized Dealer
           </motion.span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl mb-4">Premium Brands We Carry</h2>
-          <p className="text-gray-400 dark:text-gray-400 text-sm sm:text-base max-w-2xl mx-auto">
+          <p className="text-[#6F4E37] dark:text-[#A0A0A0] dark:text-[#6F4E37] dark:text-[#A0A0A0] text-sm sm:text-base max-w-2xl mx-auto">
             Official partner of the world's most prestigious watch manufacturers
           </p>
         </motion.div>
@@ -74,15 +74,15 @@ export default function BrandShowcase() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
               whileHover={{ scale: 1.1, y: -5 }}
-              className="relative bg-white/5 dark:bg-white/5 backdrop-blur-sm border border-white/10 dark:border-white/10 p-6 sm:p-8 rounded-lg flex items-center justify-center aspect-square group hover:border-[#d4af37]/50 transition-all duration-300 overflow-hidden"
+              className="relative bg-white/5 dark:bg-white/5 backdrop-blur-sm border border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 dark:border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 p-6 sm:p-8 rounded-lg flex items-center justify-center aspect-square group hover:border-[#007BFF] dark:border-[#E0BFB8]/50 transition-all duration-300 overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/20 group-hover:to-[#d4af37]/10 transition-all duration-500" />
 
               <div className="relative z-10 text-center">
-                <div className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#d4af37] mb-2 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#007BFF] dark:text-[#E0BFB8] mb-2 group-hover:scale-110 transition-transform duration-300">
                   {brand.logo}
                 </div>
-                <p className="text-xs text-gray-400 dark:text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-xs text-[#6F4E37] dark:text-[#A0A0A0] dark:text-[#6F4E37] dark:text-[#A0A0A0] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   {brand.name}
                 </p>
               </div>
@@ -99,20 +99,20 @@ export default function BrandShowcase() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.15, duration: 0.6 }}
               whileHover={{ y: -8 }}
-              className="relative bg-white/5 dark:bg-white/5 backdrop-blur-md border border-white/10 dark:border-white/10 p-6 rounded-lg text-center group hover:border-[#d4af37]/50 transition-all duration-300 overflow-hidden"
+              className="relative bg-white/5 dark:bg-white/5 backdrop-blur-md border border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 dark:border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 p-6 rounded-lg text-center group hover:border-[#007BFF] dark:border-[#E0BFB8]/50 transition-all duration-300 overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/10 group-hover:to-[#d4af37]/5 transition-all duration-500" />
 
               <motion.div
                 whileHover={{ scale: 1.2, rotate: 360 }}
                 transition={{ duration: 0.6 }}
-                className="relative z-10 w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 bg-[#d4af37]/10 rounded-full flex items-center justify-center"
+                className="relative z-10 w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 bg-[#007BFF] dark:bg-[#E0BFB8]/10 rounded-full flex items-center justify-center"
               >
-                <cert.icon className="w-6 h-6 sm:w-8 sm:h-8 text-[#d4af37]" />
+                <cert.icon className="w-6 h-6 sm:w-8 sm:h-8 text-[#007BFF] dark:text-[#E0BFB8]" />
               </motion.div>
 
               <h4 className="text-base sm:text-lg mb-1 relative z-10">{cert.title}</h4>
-              <p className="text-xs sm:text-sm text-gray-400 dark:text-gray-400 relative z-10">{cert.desc}</p>
+              <p className="text-xs sm:text-sm text-[#6F4E37] dark:text-[#A0A0A0] dark:text-[#6F4E37] dark:text-[#A0A0A0] relative z-10">{cert.desc}</p>
             </motion.div>
           ))}
         </div>

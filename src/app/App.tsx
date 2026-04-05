@@ -147,19 +147,19 @@ export default function App() {
 
       <ScrollProgress />
 
-      <div className="min-h-screen bg-[#0a0a0a] dark:bg-[#0a0a0a] bg-gray-50 text-gray-900 dark:text-white overflow-x-hidden relative transition-colors duration-500">
+      <div className="min-h-screen bg-[#F9F7F2] dark:bg-[#121212] text-[#3B4C69] dark:text-[#F5F5F5] overflow-x-hidden relative transition-colors duration-500">
         {/* Fixed Continuous Background */}
         <div className="fixed inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(212,175,55,0.15),transparent_50%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(212,175,55,0.15),transparent_50%)] bg-[radial-gradient(ellipse_at_top,rgba(212,175,55,0.08),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(212,175,55,0.1),transparent_50%)] dark:bg-[radial-gradient(ellipse_at_bottom,rgba(212,175,55,0.1),transparent_50%)] bg-[radial-gradient(ellipse_at_bottom,rgba(212,175,55,0.05),transparent_50%)]" />
-        <div className="absolute inset-0 opacity-30 dark:opacity-30 opacity-20">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-[#d4af37]/10 rounded-full blur-3xl" />
-          <div className="absolute top-1/3 right-20 w-96 h-96 bg-[#d4af37]/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-[#d4af37]/8 rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,123,255,0.08),transparent_50%)] dark:bg-[radial-gradient(ellipse_at_top,rgba(224,191,184,0.15),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(0,128,128,0.05),transparent_50%)] dark:bg-[radial-gradient(ellipse_at_bottom,rgba(238,219,176,0.1),transparent_50%)]" />
+        <div className="absolute inset-0 opacity-20 dark:opacity-30">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-[#007BFF]/10 dark:bg-[#E0BFB8]/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/3 right-20 w-96 h-96 bg-[#008080]/5 dark:bg-[#EEDBB0]/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-[#007BFF]/8 dark:bg-[#E0BFB8]/8 rounded-full blur-3xl" />
         </div>
         {/* Subtle grid pattern */}
-        <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.02] opacity-[0.04]" style={{
-          backgroundImage: 'linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)',
+        <div className="absolute inset-0 opacity-[0.04] dark:opacity-[0.02]" style={{
+          backgroundImage: 'linear-gradient(rgba(111,78,55,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(111,78,55,0.1) 1px, transparent 1px)',
           backgroundSize: '100px 100px'
         }} />
       </div>
@@ -171,8 +171,8 @@ export default function App() {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-white/80 dark:bg-black/40 backdrop-blur-xl border-b border-gray-200 dark:border-white/20 shadow-lg'
-            : 'bg-transparent backdrop-blur-sm border-b border-gray-200/50 dark:border-white/10'
+            ? 'bg-[#F9F7F2]/90 dark:bg-[#121212]/80 backdrop-blur-xl border-b border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 shadow-lg'
+            : 'bg-transparent backdrop-blur-sm border-b border-[#6F4E37]/10 dark:border-[#A0A0A0]/20'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-5 flex items-center justify-between">
@@ -198,16 +198,16 @@ export default function App() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * i, duration: 0.5 }}
-                className="relative text-sm tracking-wide group cursor-pointer py-2"
+                className="relative text-sm tracking-wide text-[#3B4C69] dark:text-[#A0A0A0] hover:text-[#000000] dark:hover:text-[#FFFFFF] transition-colors duration-300 group cursor-pointer py-2"
               >
-                <span className="relative z-10 transition-colors duration-300 group-hover:text-[#d4af37]">
+                <span className="relative z-10">
                   {item}
                 </span>
                 <motion.div
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent origin-center scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[#007BFF] dark:via-[#E0BFB8] to-transparent origin-center scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
                 />
                 <motion.div
-                  className="absolute inset-0 bg-[#d4af37]/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"
+                  className="absolute inset-0 bg-[#007BFF]/10 dark:bg-[#E0BFB8]/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"
                 />
               </motion.a>
             ))}
@@ -219,25 +219,25 @@ export default function App() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="hidden sm:block relative px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm tracking-wide overflow-hidden group"
+              className="hidden sm:block relative px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm tracking-wide overflow-hidden group rounded-lg"
             >
-              <span className="relative z-10 text-black font-medium">Shop Now</span>
+              <span className="relative z-10 text-white dark:text-[#F5F5F5] font-medium">Shop Now</span>
               <motion.div
-                className="absolute inset-0 bg-[#d4af37]"
+                className="absolute inset-0 bg-[#007BFF] dark:bg-[#E0BFB8]"
                 initial={{ scale: 1 }}
                 whileHover={{ scale: 1.05 }}
               />
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-[#f0c74a] to-[#d4af37] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                className="absolute inset-0 bg-[#004225] dark:bg-[#EEDBB0] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               />
-              <div className="absolute inset-0 bg-[#d4af37]/50 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-[#007BFF]/50 dark:bg-[#E0BFB8]/50 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </motion.button>
 
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsMobileMenuOpen(true)}
-              className="lg:hidden w-10 h-10 flex items-center justify-center border border-gray-300 dark:border-white/20 rounded hover:border-[#d4af37] hover:bg-[#d4af37]/10 transition-all"
+              className="lg:hidden w-10 h-10 flex items-center justify-center border border-[#6F4E37]/30 dark:border-[#A0A0A0]/30 rounded hover:border-[#007BFF] dark:hover:border-[#E0BFB8] hover:bg-[#007BFF]/10 dark:hover:bg-[#E0BFB8]/10 transition-all"
             >
               <Menu className="w-5 h-5" />
             </motion.button>
@@ -292,8 +292,8 @@ export default function App() {
                 transition={{ duration: 0.8 }}
                 className="mb-4 sm:mb-6"
               >
-                <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-[#d4af37]/20 border border-[#d4af37]/30 backdrop-blur-sm mb-4 sm:mb-6">
-                  <span className="text-[#d4af37] text-xs sm:text-sm tracking-widest">
+                <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 bg-[#007BFF]/20 dark:bg-[#E0BFB8]/20 border border-[#007BFF]/30 dark:border-[#E0BFB8]/30 backdrop-blur-sm mb-4 sm:mb-6">
+                  <span className="text-[#007BFF] dark:text-[#E0BFB8] text-xs sm:text-sm tracking-widest">
                     {heroSlides[currentSlide].subtitle}
                   </span>
                 </div>
@@ -312,7 +312,7 @@ export default function App() {
                 {heroSlides[currentSlide].title.split(' ').map((word, i) => (
                   <span key={i}>
                     {i === heroSlides[currentSlide].title.split(' ').length - 1 ? (
-                      <span className="text-[#d4af37]">{word}</span>
+                      <span className="text-[#007BFF] dark:text-[#E0BFB8]">{word}</span>
                     ) : (
                       word + ' '
                     )}
@@ -325,7 +325,7 @@ export default function App() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-10 leading-relaxed max-w-2xl"
+              className="text-base sm:text-lg md:text-xl text-[#6F4E37] dark:text-[#A0A0A0] mb-8 sm:mb-10 leading-relaxed max-w-2xl"
             >
               Discover India's finest collection of luxury timepieces.
               Handcrafted precision meets contemporary design.
@@ -338,9 +338,9 @@ export default function App() {
               className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-12 sm:mb-16"
             >
               <motion.button
-                whileHover={{ scale: 1.05, backgroundColor: "#f0c74a" }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 bg-[#d4af37] text-black tracking-wide flex items-center justify-center gap-2 group text-sm sm:text-base md:text-lg"
+                className="px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 bg-[#007BFF] dark:bg-[#E0BFB8] hover:bg-[#004225] dark:hover:bg-[#EEDBB0] text-white dark:text-[#F5F5F5] tracking-wide flex items-center justify-center gap-2 group text-sm sm:text-base md:text-lg transition-colors duration-300 rounded-lg"
               >
                 Explore Collection
                 <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5 group-hover:translate-x-1 transition-transform" />
@@ -348,7 +348,7 @@ export default function App() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 border-2 border-white/30 backdrop-blur-sm tracking-wide hover:bg-white/10 transition-colors text-sm sm:text-base md:text-lg"
+                className="px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 border-2 border-[#6F4E37]/30 dark:border-[#A0A0A0]/30 backdrop-blur-sm tracking-wide hover:bg-[#007BFF]/10 dark:hover:bg-[#E0BFB8]/10 hover:border-[#007BFF] dark:hover:border-[#E0BFB8] transition-all duration-300 text-sm sm:text-base md:text-lg rounded-lg"
               >
                 Learn More
               </motion.button>
@@ -383,7 +383,7 @@ export default function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1 }}
-            className="grid grid-cols-3 gap-4 sm:gap-6 md:gap-8 mt-12 sm:mt-16 md:mt-20 pt-8 sm:pt-12 border-t border-white/20 max-w-3xl"
+            className="grid grid-cols-3 gap-4 sm:gap-6 md:gap-8 mt-12 sm:mt-16 md:mt-20 pt-8 sm:pt-12 border-t border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 max-w-3xl"
           >
             {[
               { num: "10K+", label: "Happy Customers" },
@@ -459,7 +459,7 @@ export default function App() {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.8, delay: i * 0.15, ease: "easeOut" }}
                 whileHover={{ y: -10, scale: 1.02 }}
-                className="group relative bg-white/5 backdrop-blur-md border border-white/10 p-6 hover:border-[#d4af37]/50 transition-all duration-300 rounded-lg overflow-hidden"
+                className="group relative bg-white/5 backdrop-blur-md border border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 p-6 hover:border-[#d4af37]/50 transition-all duration-300 rounded-lg overflow-hidden"
               >
                 {/* Glassy effect on hover */}
                 <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/5 group-hover:to-[#d4af37]/10 transition-all duration-500 rounded-lg" />
@@ -710,7 +710,7 @@ export default function App() {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.8, delay: i * 0.15 }}
                 whileHover={{ y: -8, scale: 1.02 }}
-                className="relative bg-white/5 backdrop-blur-md border border-white/10 p-6 sm:p-8 text-center hover:border-[#d4af37]/50 transition-all duration-300 group rounded-lg overflow-hidden"
+                className="relative bg-white/5 backdrop-blur-md border border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 p-6 sm:p-8 text-center hover:border-[#d4af37]/50 transition-all duration-300 group rounded-lg overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/10 group-hover:to-[#d4af37]/5 transition-all duration-500" />
 
@@ -732,7 +732,7 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="max-w-2xl mx-auto bg-white/5 backdrop-blur-xl border border-white/20 p-6 sm:p-8 md:p-12 rounded-lg shadow-2xl shadow-black/50"
+            className="max-w-2xl mx-auto bg-white/5 backdrop-blur-xl border border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 p-6 sm:p-8 md:p-12 rounded-lg shadow-2xl shadow-black/50"
           >
             <h3 className="text-xl sm:text-2xl mb-6 text-center">Send Us a Message</h3>
             <form className="space-y-4 sm:space-y-6">
@@ -740,23 +740,23 @@ export default function App() {
                 <input
                   type="text"
                   placeholder="Your Name"
-                  className="w-full px-4 py-3 bg-black/30 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-gray-500 focus:border-[#d4af37]/50 focus:bg-black/40 focus:outline-none transition-all"
+                  className="w-full px-4 py-3 bg-black/30 backdrop-blur-sm border border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 rounded-lg text-white placeholder-gray-500 focus:border-[#d4af37]/50 focus:bg-black/40 focus:outline-none transition-all"
                 />
                 <input
                   type="email"
                   placeholder="Your Email"
-                  className="w-full px-4 py-3 bg-black/30 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-gray-500 focus:border-[#d4af37]/50 focus:bg-black/40 focus:outline-none transition-all"
+                  className="w-full px-4 py-3 bg-black/30 backdrop-blur-sm border border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 rounded-lg text-white placeholder-gray-500 focus:border-[#d4af37]/50 focus:bg-black/40 focus:outline-none transition-all"
                 />
               </div>
               <input
                 type="text"
                 placeholder="Subject"
-                className="w-full px-4 py-3 bg-black/30 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-gray-500 focus:border-[#d4af37]/50 focus:bg-black/40 focus:outline-none transition-all"
+                className="w-full px-4 py-3 bg-black/30 backdrop-blur-sm border border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 rounded-lg text-white placeholder-gray-500 focus:border-[#d4af37]/50 focus:bg-black/40 focus:outline-none transition-all"
               />
               <textarea
                 rows={5}
                 placeholder="Your Message"
-                className="w-full px-4 py-3 bg-black/30 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-gray-500 focus:border-[#d4af37]/50 focus:bg-black/40 focus:outline-none transition-all resize-none text-sm sm:text-base"
+                className="w-full px-4 py-3 bg-black/30 backdrop-blur-sm border border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 rounded-lg text-white placeholder-gray-500 focus:border-[#d4af37]/50 focus:bg-black/40 focus:outline-none transition-all resize-none text-sm sm:text-base"
               />
               <motion.button
                 whileHover={{ scale: 1.02 }}
@@ -772,7 +772,7 @@ export default function App() {
       </section>
 
       {/* Footer with Glassmorphism */}
-      <footer className="relative z-10 border-t border-gray-200 dark:border-white/20 bg-white/50 dark:bg-black/30 backdrop-blur-xl">
+      <footer className="relative z-10 border-t border-gray-200 dark:border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 bg-white/50 dark:bg-black/30 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 md:gap-12 mb-8 sm:mb-12">
             {/* Brand Column */}
@@ -797,7 +797,7 @@ export default function App() {
                     href={social.href}
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.95 }}
-                    className="relative w-10 h-10 border border-white/20 backdrop-blur-sm flex items-center justify-center hover:border-[#d4af37] hover:text-[#d4af37] transition-all duration-300 rounded group overflow-hidden"
+                    className="relative w-10 h-10 border border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 backdrop-blur-sm flex items-center justify-center hover:border-[#d4af37] hover:text-[#d4af37] transition-all duration-300 rounded group overflow-hidden"
                   >
                     <social.icon className="w-5 h-5 relative z-10" />
                     <div className="absolute inset-0 bg-[#d4af37]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -852,7 +852,7 @@ export default function App() {
                 <input
                   type="email"
                   placeholder="Your email"
-                  className="w-full px-3 sm:px-4 py-2 bg-black/50 border border-white/10 text-white text-xs sm:text-sm placeholder-gray-500 focus:border-[#d4af37]/50 focus:outline-none transition-colors"
+                  className="w-full px-3 sm:px-4 py-2 bg-black/50 border border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 text-white text-xs sm:text-sm placeholder-gray-500 focus:border-[#d4af37]/50 focus:outline-none transition-colors"
                 />
                 <motion.button
                   whileHover={{ scale: 1.02 }}
@@ -866,7 +866,7 @@ export default function App() {
           </div>
 
           {/* Bottom Bar */}
-          <div className="pt-6 sm:pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="pt-6 sm:pt-8 border-t border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-500 text-xs sm:text-sm text-center md:text-left">
               © 2026 Homage Watch India. All rights reserved.
             </p>

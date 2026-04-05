@@ -100,12 +100,12 @@ export default function CustomerReviews() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-[#d4af37] text-xs sm:text-sm tracking-widest uppercase mb-4 block"
+            className="text-[#007BFF] dark:text-[#E0BFB8] text-xs sm:text-sm tracking-widest uppercase mb-4 block"
           >
             Testimonials
           </motion.span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl mb-4">What Our Customers Say</h2>
-          <p className="text-gray-400 dark:text-gray-400 text-sm sm:text-base max-w-2xl mx-auto">
+          <p className="text-[#6F4E37] dark:text-[#A0A0A0] dark:text-[#6F4E37] dark:text-[#A0A0A0] text-sm sm:text-base max-w-2xl mx-auto">
             Discover why thousands of customers trust us for their luxury timepiece needs
           </p>
         </motion.div>
@@ -120,7 +120,7 @@ export default function CustomerReviews() {
               transition={{ duration: 0.6, delay: i * 0.1 }}
               whileHover={{ y: -10, scale: 1.02 }}
               onHoverStart={() => setActiveReview(i)}
-              className="relative bg-white/5 dark:bg-white/5 backdrop-blur-md border border-white/10 dark:border-white/10 p-6 sm:p-8 rounded-lg hover:border-[#d4af37]/50 transition-all duration-300 group overflow-hidden"
+              className="relative bg-white/5 dark:bg-white/5 backdrop-blur-md border border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 dark:border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 p-6 sm:p-8 rounded-lg hover:border-[#007BFF] dark:border-[#E0BFB8]/50 transition-all duration-300 group overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/10 group-hover:to-[#d4af37]/5 transition-all duration-500" />
 
@@ -130,9 +130,9 @@ export default function CustomerReviews() {
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 + 0.3, type: "spring" }}
-                  className="absolute -top-4 -right-4 w-16 h-16 bg-[#d4af37]/10 rounded-full flex items-center justify-center"
+                  className="absolute -top-4 -right-4 w-16 h-16 bg-[#007BFF] dark:bg-[#E0BFB8]/10 rounded-full flex items-center justify-center"
                 >
-                  <Quote className="w-8 h-8 text-[#d4af37]" />
+                  <Quote className="w-8 h-8 text-[#007BFF] dark:text-[#E0BFB8]" />
                 </motion.div>
 
                 <div className="flex items-center gap-4 mb-4">
@@ -140,7 +140,7 @@ export default function CustomerReviews() {
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     className="relative"
                   >
-                    <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-[#d4af37]/30">
+                    <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-[#007BFF] dark:border-[#E0BFB8]/30">
                       <img
                         src={review.image}
                         alt={review.name}
@@ -148,7 +148,7 @@ export default function CustomerReviews() {
                         loading="lazy"
                       />
                     </div>
-                    <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[#d4af37] rounded-full flex items-center justify-center">
+                    <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[#007BFF] dark:bg-[#E0BFB8] rounded-full flex items-center justify-center">
                       <svg className="w-3 h-3 text-black" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
                       </svg>
@@ -157,21 +157,21 @@ export default function CustomerReviews() {
 
                   <div>
                     <h4 className="font-medium text-lg">{review.name}</h4>
-                    <p className="text-xs text-gray-400 dark:text-gray-400">{review.location}</p>
+                    <p className="text-xs text-[#6F4E37] dark:text-[#A0A0A0] dark:text-[#6F4E37] dark:text-[#A0A0A0]">{review.location}</p>
                     <div className="flex gap-1 mt-1">
                       {[...Array(review.rating)].map((_, i) => (
-                        <Star key={i} className="w-3 h-3 fill-[#d4af37] text-[#d4af37]" />
+                        <Star key={i} className="w-3 h-3 fill-[#007BFF] dark:fill-[#E0BFB8] text-[#007BFF] dark:text-[#E0BFB8]" />
                       ))}
                     </div>
                   </div>
                 </div>
 
-                <p className="text-gray-300 dark:text-gray-300 text-sm leading-relaxed mb-4">
+                <p className="text-[#6F4E37] dark:text-[#A0A0A0] dark:text-[#6F4E37] dark:text-[#A0A0A0] text-sm leading-relaxed mb-4">
                   "{review.comment}"
                 </p>
 
-                <div className="flex justify-between items-center pt-4 border-t border-white/10 dark:border-white/10">
-                  <span className="text-xs text-[#d4af37]">{review.watch}</span>
+                <div className="flex justify-between items-center pt-4 border-t border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 dark:border-[#6F4E37]/20 dark:border-[#A0A0A0]/30">
+                  <span className="text-xs text-[#007BFF] dark:text-[#E0BFB8]">{review.watch}</span>
                   <span className="text-xs text-gray-500 dark:text-gray-500">{review.date}</span>
                 </div>
               </div>
@@ -186,29 +186,29 @@ export default function CustomerReviews() {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12 bg-white/5 dark:bg-white/5 backdrop-blur-md border border-white/10 dark:border-white/10 p-6 sm:p-8 rounded-lg max-w-3xl mx-auto">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12 bg-white/5 dark:bg-white/5 backdrop-blur-md border border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 dark:border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 p-6 sm:p-8 rounded-lg max-w-3xl mx-auto">
             <div className="text-center">
-              <div className="text-4xl sm:text-5xl text-[#d4af37] mb-2">4.9</div>
+              <div className="text-4xl sm:text-5xl text-[#007BFF] dark:text-[#E0BFB8] mb-2">4.9</div>
               <div className="flex gap-1 mb-2 justify-center">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-[#d4af37] text-[#d4af37]" />
+                  <Star key={i} className="w-5 h-5 fill-[#007BFF] dark:fill-[#E0BFB8] text-[#007BFF] dark:text-[#E0BFB8]" />
                 ))}
               </div>
-              <p className="text-sm text-gray-400 dark:text-gray-400">Average Rating</p>
+              <p className="text-sm text-[#6F4E37] dark:text-[#A0A0A0] dark:text-[#6F4E37] dark:text-[#A0A0A0]">Average Rating</p>
             </div>
 
             <div className="h-16 w-px bg-white/10 dark:bg-white/10 hidden sm:block" />
 
             <div className="text-center">
-              <div className="text-4xl sm:text-5xl text-[#d4af37] mb-2">10K+</div>
-              <p className="text-sm text-gray-400 dark:text-gray-400">Happy Customers</p>
+              <div className="text-4xl sm:text-5xl text-[#007BFF] dark:text-[#E0BFB8] mb-2">10K+</div>
+              <p className="text-sm text-[#6F4E37] dark:text-[#A0A0A0] dark:text-[#6F4E37] dark:text-[#A0A0A0]">Happy Customers</p>
             </div>
 
             <div className="h-16 w-px bg-white/10 dark:bg-white/10 hidden sm:block" />
 
             <div className="text-center">
-              <div className="text-4xl sm:text-5xl text-[#d4af37] mb-2">98%</div>
-              <p className="text-sm text-gray-400 dark:text-gray-400">Satisfaction Rate</p>
+              <div className="text-4xl sm:text-5xl text-[#007BFF] dark:text-[#E0BFB8] mb-2">98%</div>
+              <p className="text-sm text-[#6F4E37] dark:text-[#A0A0A0] dark:text-[#6F4E37] dark:text-[#A0A0A0]">Satisfaction Rate</p>
             </div>
           </div>
         </motion.div>
