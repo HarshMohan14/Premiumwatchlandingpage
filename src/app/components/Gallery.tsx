@@ -89,7 +89,7 @@ export default function Gallery() {
             Our Showcase
           </motion.span>
           <h2 className="text-4xl md:text-5xl mb-4">Gallery</h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Explore our curated collection of exquisite timepieces
           </p>
         </motion.div>
@@ -114,7 +114,7 @@ export default function Gallery() {
               className={`px-6 py-2.5 text-sm tracking-wide transition-all ${
                 filter === category
                   ? "bg-[#d4af37] text-black"
-                  : "bg-white/5 backdrop-blur-sm border border-white/20 hover:border-[#d4af37]/50 text-white"
+                  : "bg-gray-200 dark:bg-white/5 backdrop-blur-sm border border-gray-400 dark:border-white/20 hover:border-[#d4af37] dark:hover:border-[#d4af37]/50 text-black dark:text-white"
               }`}
             >
               {category}

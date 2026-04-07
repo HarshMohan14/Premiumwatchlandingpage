@@ -132,7 +132,7 @@ export default function CustomerReviews() {
                   transition={{ delay: i * 0.1 + 0.3, type: "spring" }}
                   className="absolute -top-4 -right-4 w-16 h-16 bg-[#007BFF] dark:bg-[#E0BFB8]/10 rounded-full flex items-center justify-center"
                 >
-                  <Quote className="w-8 h-8 text-[#007BFF] dark:text-[#E0BFB8]" />
+                  <Quote className="w-8 h-8 text-white dark:text-[#E0BFB8]" />
                 </motion.div>
 
                 <div className="flex items-center gap-4 mb-4">

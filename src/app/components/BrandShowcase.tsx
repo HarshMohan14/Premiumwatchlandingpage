@@ -108,7 +108,7 @@ export default function BrandShowcase() {
                 transition={{ duration: 0.6 }}
                 className="relative z-10 w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-4 bg-[#007BFF] dark:bg-[#E0BFB8]/10 rounded-full flex items-center justify-center"
               >
-                <cert.icon className="w-6 h-6 sm:w-8 sm:h-8 text-[#007BFF] dark:text-[#E0BFB8]" />
+                <cert.icon className="w-6 h-6 sm:w-8 sm:h-8 text-white dark:text-[#E0BFB8]" />
               </motion.div>
 
               <h4 className="text-base sm:text-lg mb-1 relative z-10">{cert.title}</h4>

@@ -740,23 +740,23 @@ export default function App() {
                 <input
                   type="text"
                   placeholder="Your Name"
-                  className="w-full px-4 py-3 bg-black/30 backdrop-blur-sm border border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 rounded-lg text-white placeholder-gray-500 focus:border-[#d4af37]/50 focus:bg-black/40 focus:outline-none transition-all"
+                  className="w-full px-4 py-3 bg-gray-200 dark:bg-black/30 backdrop-blur-sm border border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 rounded-lg text-black dark:text-white placeholder-gray-600 dark:placeholder-gray-500 focus:border-[#d4af37]/50 focus:bg-gray-100 dark:focus:bg-black/40 focus:outline-none transition-all"
                 />
                 <input
                   type="email"
                   placeholder="Your Email"
-                  className="w-full px-4 py-3 bg-black/30 backdrop-blur-sm border border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 rounded-lg text-white placeholder-gray-500 focus:border-[#d4af37]/50 focus:bg-black/40 focus:outline-none transition-all"
+                  className="w-full px-4 py-3 bg-gray-200 dark:bg-black/30 backdrop-blur-sm border border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 rounded-lg text-black dark:text-white placeholder-gray-600 dark:placeholder-gray-500 focus:border-[#d4af37]/50 focus:bg-gray-100 dark:focus:bg-black/40 focus:outline-none transition-all"
                 />
               </div>
               <input
                 type="text"
                 placeholder="Subject"
-                className="w-full px-4 py-3 bg-black/30 backdrop-blur-sm border border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 rounded-lg text-white placeholder-gray-500 focus:border-[#d4af37]/50 focus:bg-black/40 focus:outline-none transition-all"
+                className="w-full px-4 py-3 bg-gray-200 dark:bg-black/30 backdrop-blur-sm border border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 rounded-lg text-black dark:text-white placeholder-gray-600 dark:placeholder-gray-500 focus:border-[#d4af37]/50 focus:bg-gray-100 dark:focus:bg-black/40 focus:outline-none transition-all"
               />
               <textarea
                 rows={5}
                 placeholder="Your Message"
-                className="w-full px-4 py-3 bg-black/30 backdrop-blur-sm border border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 rounded-lg text-white placeholder-gray-500 focus:border-[#d4af37]/50 focus:bg-black/40 focus:outline-none transition-all resize-none text-sm sm:text-base"
+                className="w-full px-4 py-3 bg-gray-200 dark:bg-black/30 backdrop-blur-sm border border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 rounded-lg text-black dark:text-white placeholder-gray-600 dark:placeholder-gray-500 focus:border-[#d4af37]/50 focus:bg-gray-100 dark:focus:bg-black/40 focus:outline-none transition-all resize-none text-sm sm:text-base"
               />
               <motion.button
                 whileHover={{ scale: 1.02 }}
@@ -852,7 +852,7 @@ export default function App() {
                 <input
                   type="email"
                   placeholder="Your email"
-                  className="w-full px-3 sm:px-4 py-2 bg-black/50 border border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 text-white text-xs sm:text-sm placeholder-gray-500 focus:border-[#d4af37]/50 focus:outline-none transition-colors"
+                  className="w-full px-3 sm:px-4 py-2 bg-gray-200 dark:bg-black/50 border border-[#6F4E37]/20 dark:border-[#A0A0A0]/30 text-black dark:text-white text-xs sm:text-sm placeholder-gray-600 dark:placeholder-gray-500 focus:border-[#d4af37]/50 focus:outline-none transition-colors"
                 />
                 <motion.button
                   whileHover={{ scale: 1.02 }}
